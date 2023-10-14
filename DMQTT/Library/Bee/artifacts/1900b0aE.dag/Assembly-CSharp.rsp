@@ -396,6 +396,7 @@
 "Assets/Assets/M2MqttUnity/Examples/Scripts/M2MqttUnityTest.cs"
 "Assets/Assets/M2MqttUnity/Scripts/BrokerSettings.cs"
 "Assets/Assets/M2MqttUnity/Scripts/M2MqttUnityClient.cs"
+"Assets/Scripts/Client.cs"
 -langversion:9.0
 
 /deterministic

@@ -1,10 +1,10 @@
 Using pre-set license
-Built from '2022.3/staging' branch; Version is '2022.3.10f1 (ff3792e53c62) revision 16725906'; Using compiler version '192829333'; Build Type 'Release'
+Built from '2021.3/staging' branch; Version is '2021.3.29f1 (204d6dc9ae1c) revision 2116973'; Using compiler version '192829333'; Build Type 'Release'
 OS: 'Windows 11  (10.0.22621) 64bit Core' Language: 'ko' Physical Memory: 32542 MB
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
 
 COMMAND LINE ARGUMENTS:
-C:\Program Files\Unity\Hub\Editor\2022.3.10f1\Editor\Unity.exe
+C:\Program Files\Unity\Hub\Editor\2021.3.29f1\Editor\Unity.exe
 -adb2
 -batchMode
 -noUpm
@@ -15,7 +15,7 @@ C:/Users/82105/Documents/GitHub/Decentralized-MQTT/DMQTT
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-63327
+64004
 Successfully changed project path to: C:/Users/82105/Documents/GitHub/Decentralized-MQTT/DMQTT
 C:/Users/82105/Documents/GitHub/Decentralized-MQTT/DMQTT
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -39,8 +39,6 @@ C:/Users/82105/Documents/GitHub/Decentralized-MQTT/DMQTT
     "memorysetup-job-temp-allocator-block-size=2097152"
     "memorysetup-job-temp-allocator-block-size-background=1048576"
     "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
-    "memorysetup-allocator-temp-initial-block-size-main=262144"
-    "memorysetup-allocator-temp-initial-block-size-worker=262144"
     "memorysetup-temp-allocator-size-background-worker=32768"
     "memorysetup-temp-allocator-size-job-worker=262144"
     "memorysetup-temp-allocator-size-preload-manager=33554432"
@@ -49,15 +47,14 @@ C:/Users/82105/Documents/GitHub/Decentralized-MQTT/DMQTT
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [4396] Host "[IP] 192.168.0.19 [Port] 0 [Flags] 2 [Guid] 959979998 [EditorId] 959979998 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-G1FP5EB) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+Player connection [14400] Host "[IP] 192.168.0.19 [Port] 0 [Flags] 2 [Guid] 2059422403 [EditorId] 2059422403 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-G1FP5EB) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
 
-Player connection [4396] Host "[IP] 192.168.0.19 [Port] 0 [Flags] 2 [Guid] 959979998 [EditorId] 959979998 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-G1FP5EB) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [14400] Host "[IP] 192.168.0.19 [Port] 0 [Flags] 2 [Guid] 2059422403 [EditorId] 2059422403 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-G1FP5EB) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
 
-[Physics::Module] Initialized MultithreadedJobDispatcher with 7 workers.
-Refreshing native plugins compatible for Editor in 12.02 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 70.78 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Initialize engine version: 2022.3.10f1 (ff3792e53c62)
-[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2022.3.10f1/Editor/Data/Resources/UnitySubsystems
+Initialize engine version: 2021.3.29f1 (204d6dc9ae1c)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2021.3.29f1/Editor/Data/Resources/UnitySubsystems
 [Subsystems] Discovering subsystems at path C:/Users/82105/Documents/GitHub/Decentralized-MQTT/DMQTT/Assets
 GfxDevice: creating device client; threaded=0; jobified=0
 Direct3D:
@@ -67,235 +64,126 @@ Direct3D:
     VRAM:     8019 MB
     Driver:   31.0.15.3179
 Initialize mono
-Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2022.3.10f1/Editor/Data/Managed'
-Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2022.3.10f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
-Mono config path = 'C:/Program Files/Unity/Hub/Editor/2022.3.10f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56932
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2021.3.29f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2021.3.29f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2021.3.29f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56664
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
-Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.10f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.013601 seconds.
-- Loaded All Assemblies, in  0.355 seconds
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2021.3.29f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.011718 seconds.
 Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 72.63 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.229 seconds
-Domain Reload Profiling: 581ms
-	BeginReloadAssembly (120ms)
-		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (0ms)
-		BackupInstance (0ms)
-		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (1ms)
-	RebuildCommonClasses (38ms)
-	RebuildNativeTypeToScriptingClass (9ms)
-	initialDomainReloadingComplete (64ms)
-	LoadAllAssembliesAndSetupDomain (119ms)
-		LoadAssemblies (117ms)
-		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (117ms)
-			TypeCache.Refresh (116ms)
-				TypeCache.ScanAssembly (103ms)
-			ScanForSourceGeneratedMonoScriptInfo (0ms)
-			ResolveRequiredComponents (0ms)
-	FinalizeReload (230ms)
-		ReleaseScriptCaches (0ms)
-		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (177ms)
-			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (10ms)
-			SetLoadedEditorAssemblies (7ms)
-			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (2ms)
-			ProcessInitializeOnLoadAttributes (115ms)
-			ProcessInitializeOnLoadMethodAttributes (43ms)
-			AfterProcessingInitializeOnLoad (0ms)
-			EditorAssembliesLoaded (0ms)
-		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (0ms)
-========================================================================
-Worker process is ready to serve import requests
+- Completed reload, in  0.640 seconds
+Domain Reload Profiling:
+	ReloadAssembly (640ms)
+		BeginReloadAssembly (117ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (0ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (1ms)
+		EndReloadAssembly (416ms)
+			LoadAssemblies (112ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (102ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (26ms)
+			SetupLoadedEditorAssemblies (235ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (9ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (73ms)
+				BeforeProcessingInitializeOnLoad (1ms)
+				ProcessInitializeOnLoadAttributes (106ms)
+				ProcessInitializeOnLoadMethodAttributes (46ms)
+				AfterProcessingInitializeOnLoad (0ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (0ms)
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.009328 seconds.
 Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  0.721 seconds
-Refreshing native plugins compatible for Editor in 5.26 ms, found 3 plugins.
 Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.43 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
 Package Manager log level set to [2]
 [Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
 [Package Manager] Cannot connect to Unity Package Manager local server
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.552 seconds
-Domain Reload Profiling: 1266ms
-	BeginReloadAssembly (190ms)
-		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (5ms)
-		BackupInstance (0ms)
-		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (23ms)
-	RebuildCommonClasses (37ms)
-	RebuildNativeTypeToScriptingClass (11ms)
-	initialDomainReloadingComplete (56ms)
-	LoadAllAssembliesAndSetupDomain (420ms)
-		LoadAssemblies (375ms)
-		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (170ms)
-			TypeCache.Refresh (151ms)
-				TypeCache.ScanAssembly (137ms)
-			ScanForSourceGeneratedMonoScriptInfo (13ms)
-			ResolveRequiredComponents (4ms)
-	FinalizeReload (552ms)
-		ReleaseScriptCaches (0ms)
-		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (408ms)
-			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (8ms)
-			SetLoadedEditorAssemblies (4ms)
-			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (70ms)
-			ProcessInitializeOnLoadAttributes (295ms)
-			ProcessInitializeOnLoadMethodAttributes (18ms)
-			AfterProcessingInitializeOnLoad (13ms)
-			EditorAssembliesLoaded (0ms)
-		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (8ms)
-Failed to load shader (instanceID 400, GUID 9c442dc870b456e48b615cd8add0e9ef)
-Failed to load shader (instanceID 398, GUID 493b79ea9c9be44ed8b702014d3ac49c)
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.04 seconds
-Refreshing native plugins compatible for Editor in 5.66 ms, found 3 plugins.
+- Completed reload, in  1.364 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1365ms)
+		BeginReloadAssembly (137ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (5ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (19ms)
+		EndReloadAssembly (1111ms)
+			LoadAssemblies (117ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (246ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (46ms)
+			SetupLoadedEditorAssemblies (692ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (7ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (0ms)
+				BeforeProcessingInitializeOnLoad (88ms)
+				ProcessInitializeOnLoadAttributes (563ms)
+				ProcessInitializeOnLoadMethodAttributes (18ms)
+				AfterProcessingInitializeOnLoad (16ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (8ms)
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.05 seconds
+Refreshing native plugins compatible for Editor in 0.45 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 66 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 3 unused Assets / (48.6 KB). Loaded Objects now: 544.
-Memory consumption went from 59.7 MB to 59.7 MB.
-Total: 2.546000 ms (FindLiveObjects: 0.038000 ms CreateObjectMapping: 0.003900 ms MarkObjects: 2.212100 ms  DeleteObjects: 0.291100 ms)
+Unloading 3149 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 22 unused Assets / (46.8 KB). Loaded Objects now: 3612.
+Memory consumption went from 110.3 MB to 110.3 MB.
+Total: 2.656800 ms (FindLiveObjects: 0.241700 ms CreateObjectMapping: 0.156600 ms MarkObjects: 2.191200 ms  DeleteObjects: 0.066500 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
   custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
   custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:CustomObjectIndexerAttribute: bc11b3a6c3213fcdd17b65e7da85e133 -> 
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Import Request.
-  Time since last request: 1894877.226131 seconds.
-  path: Assets/Assets/M2MqttUnity/Examples/Scripts/M2MqttUnityTest.cs
-  artifactKey: Guid(bbaa80705124f9e439d56ca6d5e6db69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Assets/M2MqttUnity/Examples/Scripts/M2MqttUnityTest.cs using Guid(bbaa80705124f9e439d56ca6d5e6db69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '68013f7be3ae6f2eceb8bd7d0f6ff688') in 0.003294 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Prepare
-Failed to load shader (instanceID 400, GUID 9c442dc870b456e48b615cd8add0e9ef)
-Failed to load shader (instanceID 398, GUID 493b79ea9c9be44ed8b702014d3ac49c)
-Refreshing native plugins compatible for Editor in 4.96 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 1 unused Assets / (0.8 KB). Loaded Objects now: 544.
-Memory consumption went from 58.0 MB to 58.0 MB.
-Total: 2.209000 ms (FindLiveObjects: 0.035200 ms CreateObjectMapping: 0.003500 ms MarkObjects: 2.161200 ms  DeleteObjects: 0.008400 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:CustomObjectIndexerAttribute: 756ad292c208cfabdd7b50bc23989ffe -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
   custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
-  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 13.498726 seconds.
-  path: Assets/Assets/M2Mqtt/edl-v10.txt
-  artifactKey: Guid(aa404300f2ffc5c428e48b5c25f0a354) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Assets/M2Mqtt/edl-v10.txt using Guid(aa404300f2ffc5c428e48b5c25f0a354) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8427c3e841e36bc79390f2515c795b11') in 0.106237 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
+  Time since last request: 1896966.670486 seconds.
+  path: Assets/Assets/M2MqttUnity
+  artifactKey: Guid(944570546d264fe42a0f43eca164d385) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Assets/M2MqttUnity using Guid(944570546d264fe42a0f43eca164d385) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e0acc5a66e0656f3b6c0543f09a7e659') in 0.010434 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.001084 seconds.
-  path: Assets/Assets/M2Mqtt/epl-v10.txt
-  artifactKey: Guid(b3ca18ba9d02c764691a38b6ce68324c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Assets/M2Mqtt/epl-v10.txt using Guid(b3ca18ba9d02c764691a38b6ce68324c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '67e10a71ef7b618b1a8a629dc05883c4') in 0.001491 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 0.000300 seconds.
-  path: Assets/Assets/M2Mqtt/M2Mqtt_LICENSE.txt
-  artifactKey: Guid(8cc8e28a3c0b19a41bf4a445cec2872c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Assets/M2Mqtt/M2Mqtt_LICENSE.txt using Guid(8cc8e28a3c0b19a41bf4a445cec2872c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a88dee8338cd423e3ec6a11d3129811e') in 0.001687 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 0.000383 seconds.
-  path: Assets/Assets/M2Mqtt/MqttSecurity.cs
-  artifactKey: Guid(d39e537279957784da1f759aac6e1d13) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Assets/M2Mqtt/MqttSecurity.cs using Guid(d39e537279957784da1f759aac6e1d13) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '953ad1039999109700bb7e60a3445510') in 0.001415 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 0.000198 seconds.
-  path: Assets/Assets/M2Mqtt/MqttClient.cs
-  artifactKey: Guid(5e2e6e599dc93d04da0717a067733bb3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Assets/M2Mqtt/MqttClient.cs using Guid(5e2e6e599dc93d04da0717a067733bb3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7a552a1716a1cec4285bf0a0cdb83d4d') in 0.001360 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 15.864024 seconds.
-  path: Assets/Assets/M2Mqtt/Utility
-  artifactKey: Guid(678756caa76db8f40bcc817f5ecf5820) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Assets/M2Mqtt/Utility using Guid(678756caa76db8f40bcc817f5ecf5820) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b3fde49999a9e3b5a748c55e9bc895ac') in 0.000477 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 0.150790 seconds.
-  path: Assets/Assets/M2Mqtt/Utility/QueueExtension.cs
-  artifactKey: Guid(8a0b522302464f5468d6c8fcb8d1f577) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Assets/M2Mqtt/Utility/QueueExtension.cs using Guid(8a0b522302464f5468d6c8fcb8d1f577) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5fd5027202097fb18d18d449b903017a') in 0.001341 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 8.865357 seconds.
-  path: Assets/Assets/M2Mqtt/Exceptions/MqttClientException.cs
-  artifactKey: Guid(b12d2a7e9108c9949aece217d3313ffb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Assets/M2Mqtt/Exceptions/MqttClientException.cs using Guid(b12d2a7e9108c9949aece217d3313ffb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9ecf8e94754c13c80d34b0498ba70ddf') in 0.001297 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 0.000585 seconds.
-  path: Assets/Assets/M2Mqtt/Exceptions/MqttConnectionException.cs
-  artifactKey: Guid(882d78aba34137f43a38bdcb0020a788) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Assets/M2Mqtt/Exceptions/MqttConnectionException.cs using Guid(882d78aba34137f43a38bdcb0020a788) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b11d8d1135ac620904fe57fd35659df5') in 0.001210 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 21.364255 seconds.
+  Time since last request: 1.759575 seconds.
   path: Assets/Assets/M2MqttUnity/Scripts
   artifactKey: Guid(e5ea8fb3c7f575e45a5ca4ca34b7c6b4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Assets/M2MqttUnity/Scripts using Guid(e5ea8fb3c7f575e45a5ca4ca34b7c6b4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8842c870f69e73e312c3bd9cf23e0761') in 0.000971 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
+Start importing Assets/Assets/M2MqttUnity/Scripts using Guid(e5ea8fb3c7f575e45a5ca4ca34b7c6b4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8f5a43bf99102ab0d03ad494492c2a10') in 0.003225 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.042099 seconds.
+  Time since last request: 0.948282 seconds.
   path: Assets/Assets/M2MqttUnity/Scripts/BrokerSettings.cs
   artifactKey: Guid(6c66ecb2680ba4c4298da4410aacd50d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Assets/M2MqttUnity/Scripts/BrokerSettings.cs using Guid(6c66ecb2680ba4c4298da4410aacd50d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '850904af456aa25a0f207212a93198bd') in 0.000569 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
+Start importing Assets/Assets/M2MqttUnity/Scripts/BrokerSettings.cs using Guid(6c66ecb2680ba4c4298da4410aacd50d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '578c0ba99a334b2de112257d0d91a75c') in 0.016197 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 2.584257 seconds.
+  path: Assets/Assets/M2MqttUnity/Scripts/M2MqttUnityClient.cs
+  artifactKey: Guid(a07e1522ea617e546ad6df6d7f2a0bdc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Assets/M2MqttUnity/Scripts/M2MqttUnityClient.cs using Guid(a07e1522ea617e546ad6df6d7f2a0bdc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8c3177b472b1e4eed4ddddbd71233645') in 0.003282 seconds 
