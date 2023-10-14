@@ -396,17 +396,16 @@
 "Assets/Assets/M2Mqtt/WinRT/Hashtable.cs"
 "Assets/Assets/M2Mqtt/WinRT/MqttNetworkChannel.cs"
 "Assets/Assets/M2Mqtt/WinRT/Queue.cs"
-"Assets/Assets/M2MqttUnity/Examples/Scripts/M2MqttUnityTest.cs"
 "Assets/Assets/M2MqttUnity/Scripts/BrokerSettings.cs"
-"Assets/Assets/M2MqttUnity/Scripts/M2MqttUnityClient.cs"
 "Assets/Scripts/DidDocument.cs"
 "Assets/Scripts/DidResolver.cs"
 "Assets/Scripts/DidSystem.cs"
 "Assets/Scripts/DidUser.cs"
-"Assets/Scripts/GameManager.cs"
 "Assets/Scripts/HttpClient.cs"
 "Assets/Scripts/HttpServer.cs"
 "Assets/Scripts/IndySDK.cs"
+"Assets/Scripts/M2MqttUnityClient.cs"
+"Assets/Scripts/M2MqttUnityTest.cs"
 -langversion:9.0
 
 /deterministic
