@@ -30,6 +30,9 @@ using UnityEngine.UI;
 using uPLibrary.Networking.M2Mqtt;
 using uPLibrary.Networking.M2Mqtt.Messages;
 using M2MqttUnity;
+using Unity.VisualScripting;
+using Hyperledger.Indy.WalletApi;
+using Hyperledger.Indy.DidApi;
 
 /// <summary>
 /// Examples for the M2MQTT library (https://github.com/eclipse/paho.mqtt.m2mqtt),
@@ -41,6 +44,10 @@ namespace M2MqttUnity.Examples
     /// </summary>
     public class M2MqttUnityTest : M2MqttUnityClient
     {
+        private List<string> eventMessages = new List<string>();
+        private bool updateUI = false;
+        private DidUser didUser;
+
         [Tooltip("Set this to true to perform a testing cycle automatically on startup")]
         public bool autoTest = false;
         [Header("User Interface")]
@@ -59,10 +66,17 @@ namespace M2MqttUnity.Examples
         [Tooltip("Topic to subscribe to")]
         public string topic;
 
-        private List<string> eventMessages = new List<string>();
-        private bool updateUI = false;
+        public string userDid;
+        public string targetDid;
 
+        protected override void Start()
+        {
+            SetUiMessage("Ready.");
+            updateUI = true;
+            base.Start();
 
+            didUser = this.GetComponent<DidUser>();
+        }
         
         public void TestPublish()
         {
@@ -93,9 +107,12 @@ namespace M2MqttUnity.Examples
             if (messageInputField)
             {
                 string message = messageInputField.text;
+
+                string signedMessage = didUser.PackMessage(message, targetDid);
+
                 if (message != "")
                 {
-                    client.Publish(topic, System.Text.Encoding.UTF8.GetBytes(message), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, false);
+                    client.Publish(topic, System.Text.Encoding.UTF8.GetBytes(signedMessage), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, false);
                     Debug.Log("Message published");
                     AddUiMessage("Message published.");
                 }
@@ -136,6 +153,8 @@ namespace M2MqttUnity.Examples
         {
             base.OnConnected();
             SetUiMessage("Connected to broker on " + brokerAddress + "\n");
+
+            didUser.StartDPKI();
 
             if (autoTest)
             {
@@ -214,15 +233,6 @@ namespace M2MqttUnity.Examples
                 clearButton.interactable = connectButton.interactable;
             }
             updateUI = false;
-        }
-
-        
-
-        protected override void Start()
-        {
-            SetUiMessage("Ready.");
-            updateUI = true;
-            base.Start();
         }
 
         protected override void DecodeMessage(string topic, byte[] message)
