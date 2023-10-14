@@ -230,6 +230,7 @@ namespace M2MqttUnity
             }
         }
 
+
         private void ProcessMqttMessageBackgroundQueue()
         {
             foreach (MqttMsgPublishEventArgs msg in backMessageQueue)
@@ -352,6 +353,7 @@ namespace M2MqttUnity
             }
         }
 
+
 #if ((!UNITY_EDITOR && UNITY_WSA_10_0))
         private void OnApplicationFocus(bool focus)
         {
@@ -368,4 +370,6 @@ namespace M2MqttUnity
         }
 #endif
     }
+
+    
 }

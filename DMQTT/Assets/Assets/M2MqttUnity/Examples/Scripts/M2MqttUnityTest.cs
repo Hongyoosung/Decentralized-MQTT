@@ -48,17 +48,25 @@ namespace M2MqttUnity.Examples
         public Toggle encryptedToggle;
         public InputField addressInputField;
         public InputField portInputField;
+        public InputField messageInputField;
         public Button connectButton;
         public Button disconnectButton;
         public Button testPublishButton;
         public Button clearButton;
+        public Button sendButton;
+
+        [Header("MQTT Settings")]
+        [Tooltip("Topic to subscribe to")]
+        public string topic;
 
         private List<string> eventMessages = new List<string>();
         private bool updateUI = false;
 
+
+        
         public void TestPublish()
         {
-            client.Publish("M2MQTT_Unity/test", System.Text.Encoding.UTF8.GetBytes("Test message"), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, false);
+            client.Publish(topic, System.Text.Encoding.UTF8.GetBytes("Test message"), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, false);
             Debug.Log("Test message published");
             AddUiMessage("Test message published.");
         }
@@ -76,6 +84,21 @@ namespace M2MqttUnity.Examples
             if (portInputField && !updateUI)
             {
                 int.TryParse(brokerPort, out this.brokerPort);
+            }
+        }
+
+
+        public void SendMessage2()
+        {
+            if (messageInputField)
+            {
+                string message = messageInputField.text;
+                if (message != "")
+                {
+                    client.Publish(topic, System.Text.Encoding.UTF8.GetBytes(message), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, false);
+                    Debug.Log("Message published");
+                    AddUiMessage("Message published.");
+                }
             }
         }
 
@@ -122,12 +145,12 @@ namespace M2MqttUnity.Examples
 
         protected override void SubscribeTopics()
         {
-            client.Subscribe(new string[] { "M2MQTT_Unity/test" }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
+            client.Subscribe(new string[] { topic }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
         }
 
         protected override void UnsubscribeTopics()
         {
-            client.Unsubscribe(new string[] { "M2MQTT_Unity/test" });
+            client.Unsubscribe(new string[] { topic });
         }
 
         protected override void OnConnectionFailed(string errorMessage)
@@ -193,6 +216,8 @@ namespace M2MqttUnity.Examples
             updateUI = false;
         }
 
+        
+
         protected override void Start()
         {
             SetUiMessage("Ready.");
@@ -205,7 +230,7 @@ namespace M2MqttUnity.Examples
             string msg = System.Text.Encoding.UTF8.GetString(message);
             Debug.Log("Received: " + msg);
             StoreMessage(msg);
-            if (topic == "M2MQTT_Unity/test")
+            if (topic == this.topic)
             {
                 if (autoTest)
                 {
@@ -242,6 +267,8 @@ namespace M2MqttUnity.Examples
                 UpdateUI();
             }
         }
+
+       
 
         private void OnDestroy()
         {
