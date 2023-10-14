@@ -19,9 +19,13 @@ public class DidUser : MonoBehaviour
     string walletName = "wallet";
     string walletKey = "walletCredentials";
 
+    public Dictionary<string, string> didVerKeyMap = new Dictionary<string, string>();
+
+    public string targetVk = "sdasdadinadowindoianwido123";//test
 
     public CreateAndStoreMyDidResult didAndVerkey;
-    public string userDid = "issuer00000000000000000000000000";
+    public string userDid = "userDid00000000000000000000000000";
+    public string targetDid = "targetDid00000000000000000000000000";
 
     string walletConfig;
     string walletCredentials;
@@ -31,10 +35,10 @@ public class DidUser : MonoBehaviour
 
     }
 
-    public void StartDPKI()
+    public void StartDPKI(DidSystem didSystem, HttpClient httpclient)
     {
         // Get instance of DidSystem
-        DidSystem didSystem = DidSystem.GetInstance();
+        didSystem = DidSystem.GetInstance();
 
         // Create and open a new wallet using the methods from DidSystem
         this.wallet = didSystem.CreateWalletTest();
@@ -48,8 +52,7 @@ public class DidUser : MonoBehaviour
 
         CreateAndStoreMyDidResult didAndVerkey = didSystem.CreateDidInWalletTest(wallet, userDid);
 
-        // Connect to the pool.
-        didSystem.ConnectionPool();
+        didSystem.StartDidSyetem(didSystem, httpclient, userDid, targetDid);
     }
 
     void WalletCreateAndOpen()
@@ -72,6 +75,10 @@ public class DidUser : MonoBehaviour
         string didConfig = "{\"seed\":\"" + userDid + "\"}";
         didAndVerkey = Did.CreateAndStoreMyDidAsync(wallet, didConfig).Result;
         Debug.Log("didAndVerkey: " + didAndVerkey.Did + " " + didAndVerkey.VerKey);
+
+        // Store the DID and its corresponding VerKey in the dictionary.
+        if (!didVerKeyMap.ContainsKey(didAndVerkey.Did))
+            didVerKeyMap.Add(didAndVerkey.Did, didAndVerkey.VerKey);
     }
 
     public void CleanWallet()
@@ -88,9 +95,12 @@ public class DidUser : MonoBehaviour
 
     public string PackMessage(string message, string targetDid)
     {
-        Debug.Log("PackMessage");
-        byte[] packedMessage = Crypto.PackMessageAsync(wallet, didAndVerkey.VerKey, targetDid,
+        Debug.Log("PackMessage : " + message);
+
+        byte[] packedMessage = Crypto.PackMessageAsync(wallet, didAndVerkey.VerKey,
+            targetVk,
             System.Text.Encoding.UTF8.GetBytes(message)).Result;
+
         Debug.Log("packedMessage: " + packedMessage.ToString());
 
         return Encoding.UTF8.GetString(packedMessage);

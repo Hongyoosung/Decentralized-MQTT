@@ -32,13 +32,11 @@ public class DidSystem : MonoBehaviour
     Wallet wallet;
     Pool pool;
 
-    string genesisFilePath = null;
+    string genesisFilePath = "C:/Users/82105/Documents/GitHub/Decentralized-MQTT/pool_transactions_genesis.txt";
 
     CreateAndStoreMyDidResult result;
 
-    public string didIssuerSeed = "issuer00000000000000000000000000";
-    public string didHolderSeed = "holder00000000000000000000000000";
-
+    
     // Start is called before the first frame update
 
     void Awake()
@@ -49,52 +47,44 @@ public class DidSystem : MonoBehaviour
     void Start()
     {
         genesisFilePath = Application.dataPath + "/genesis.txn";
-
         //defultWalletPath = Application.dataPath + "/wallet";
         //Debug.Log("defultWalletPath: " + defultWalletPath);
 
     }
 
+    public void StartDidSyetem(DidSystem didSystem, HttpClient httpClient, string userDid, string targetDid)
+    {
+        string genesisFile_ = httpClient.CreateGenesisFile(genesisFilePath);
+
+        Debug.Log("Pool Start");
+        /*
+        string resolveData = DidResolver.resolve(didSystem, userDid, targetDid);
+        JObject resolveDataJson = JObject.Parse(resolveData);
+
+        JArray serviceArray = resolveDataJson.GetValue("service").Value<JArray>();
+        Debug.Log("serviceArray: " + serviceArray.ToString());
+
+        string serviceEndpoint = serviceArray[0]["serviceEndpoint"].ToString();
+        Debug.Log("serviceEndpoint: " + serviceEndpoint);
+        */
+        ConnectionPool();
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            HttpClient httpClient = GameManager.GetInstance().httpClient;
-            string genesisFile_ = httpClient.CreateGenesisFile(genesisFilePath);
-
-            Debug.Log("Pool Start");
-            ConnectionPool();
-        }
-
+        /*
         if (Input.GetKeyDown(KeyCode.Z))
         {
             Debug.Log("Clean Pool Start");
             CleanPool();
         }
 
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            string resolveData = DidResolver.resolve(this, result.Did);
-            JObject resolveDataJson = JObject.Parse(resolveData);
-
-            JArray serviceArray = resolveDataJson.GetValue("service").Value<JArray>();
-            Debug.Log("serviceArray: " + serviceArray.ToString());
-
-            string serviceEndpoint = serviceArray[0]["serviceEndpoint"].ToString();
-            Debug.Log("serviceEndpoint: " + serviceEndpoint);
-        }
-
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-
-        }
-
         if (Input.GetKeyDown(KeyCode.N))
         {
             DidDocument didDocument = new DidDocument();
         }
-
+        */
     }
 
     public static DidSystem GetInstance()
@@ -184,11 +174,11 @@ public class DidSystem : MonoBehaviour
 
     public void CreateDidInWallet()
     {
-        string did_json = "{\"seed\":\"" + didIssuerSeed + "\"}";
+        //string did_json = "{\"seed\":\"" + didIssuerSeed + "\"}";
 
         try
         {
-            result = Did.CreateAndStoreMyDidAsync(wallet, did_json).Result;
+            //result = Did.CreateAndStoreMyDidAsync(wallet, did_json).Result;
             Debug.Log("DID: " + result.Did);
             Debug.Log("Verkey: " + result.VerKey);
         }
@@ -238,9 +228,9 @@ public class DidSystem : MonoBehaviour
         }
     }
 
-    public string GetNymTransaction(string target_did)
+    public string GetNymTransaction(string userDid, string target_did)
     {
-        string submitter_did = result.Did;
+        string submitter_did = userDid;
 
         string nym_request = Ledger.BuildGetNymRequestAsync(submitter_did, target_did).Result;
         Debug.Log("nym_request: " + nym_request);
@@ -251,9 +241,9 @@ public class DidSystem : MonoBehaviour
         return nym_response;
     }
 
-    public string GetAttribTransaction(string target_did, string attrib)
+    public string GetAttribTransaction(string userDid, string target_did, string attrib)
     {
-        string submitter_did = result.Did;
+        string submitter_did = userDid;
 
         string attrib_request = Ledger.BuildGetAttribRequestAsync(submitter_did, target_did, attrib, null, null).Result;
         Debug.Log("attrib_request: " + attrib_request);

@@ -47,6 +47,8 @@ namespace M2MqttUnity.Examples
         private List<string> eventMessages = new List<string>();
         private bool updateUI = false;
         private DidUser didUser;
+        private HttpClient httpClient;
+        private DidSystem didSystem;
 
         [Tooltip("Set this to true to perform a testing cycle automatically on startup")]
         public bool autoTest = false;
@@ -65,8 +67,6 @@ namespace M2MqttUnity.Examples
         [Header("MQTT Settings")]
         [Tooltip("Topic to subscribe to")]
         public string topic;
-
-        public string userDid;
         public string targetDid;
 
         protected override void Start()
@@ -76,6 +76,8 @@ namespace M2MqttUnity.Examples
             base.Start();
 
             didUser = this.GetComponent<DidUser>();
+            httpClient = this.GetComponent<HttpClient>();
+            didSystem = this.GetComponent<DidSystem>();
         }
         
         public void TestPublish()
@@ -119,6 +121,19 @@ namespace M2MqttUnity.Examples
             }
         }
 
+        protected override void OnConnected()
+        {
+            base.OnConnected();
+            SetUiMessage("Connected to broker on " + brokerAddress + "\n");
+
+            didUser.StartDPKI(didSystem, httpClient);
+
+            if (autoTest)
+            {
+                TestPublish();
+            }
+        }
+
         public void SetEncrypted(bool isEncrypted)
         {
             this.isEncrypted = isEncrypted;
@@ -147,19 +162,6 @@ namespace M2MqttUnity.Examples
         {
             base.OnConnecting();
             SetUiMessage("Connecting to broker on " + brokerAddress + ":" + brokerPort.ToString() + "...\n");
-        }
-
-        protected override void OnConnected()
-        {
-            base.OnConnected();
-            SetUiMessage("Connected to broker on " + brokerAddress + "\n");
-
-            didUser.StartDPKI();
-
-            if (autoTest)
-            {
-                TestPublish();
-            }
         }
 
         protected override void SubscribeTopics()

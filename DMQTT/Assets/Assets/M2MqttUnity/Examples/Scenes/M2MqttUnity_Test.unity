@@ -2500,6 +2500,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1699045183}
   - component: {fileID: 1699045182}
+  - component: {fileID: 1699045184}
+  - component: {fileID: 1699045185}
+  - component: {fileID: 1699045186}
   m_Layer: 0
   m_Name: M2MQTT
   m_TagString: Untagged
@@ -2539,6 +2542,7 @@ MonoBehaviour:
   clearButton: {fileID: 1573663948}
   sendButton: {fileID: 199968196}
   topic: mytopic123
+  targetDid: qwe1123123123123
 --- !u!4 &1699045183
 Transform:
   m_ObjectHideFlags: 0
@@ -2554,6 +2558,46 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1699045184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699045181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f9f580ad2224e2419de81ffcea7c8ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  userDid: issuer00000000000000000000000000
+--- !u!114 &1699045185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699045181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd5678c2591fe8c4f9174c15735ec839, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: 
+--- !u!114 &1699045186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699045181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a72ca30a5eef2e2469a8e0a6b691dfee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  didIssuerSeed: issuer00000000000000000000000000
+  didHolderSeed: holder00000000000000000000000000
 --- !u!1 &1740149081
 GameObject:
   m_ObjectHideFlags: 0

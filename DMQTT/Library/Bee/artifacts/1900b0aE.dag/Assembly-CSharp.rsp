@@ -401,7 +401,7 @@
 "Assets/Assets/M2MqttUnity/Scripts/M2MqttUnityClient.cs"
 "Assets/Scripts/DidDocument.cs"
 "Assets/Scripts/DidResolver.cs"
-"Assets/Scripts/DIDSystem.cs"
+"Assets/Scripts/DidSystem.cs"
 "Assets/Scripts/DidUser.cs"
 "Assets/Scripts/GameManager.cs"
 "Assets/Scripts/HttpClient.cs"

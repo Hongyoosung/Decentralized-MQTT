@@ -17,11 +17,11 @@ using System.Xml.Linq;
 
 public class DidResolver
 {
-    public static string resolve(DidSystem didSystem, string targetDid)
+    public static string resolve(DidSystem didSystem, string userDid, string targetDid)
     {
         Debug.Log("DID Resolver resolve");
 
-        string nymResult = didSystem.GetNymTransaction(targetDid);
+        string nymResult = didSystem.GetNymTransaction(userDid, targetDid);
         Debug.Log("nymResult: " + nymResult);
         JObject nymJobject = JObject.Parse(nymResult);
         string nymData = nymJobject.GetValue("result").Value<JObject>().GetValue("data").Value<string>();
@@ -33,7 +33,7 @@ public class DidResolver
             return null;
         }
 
-        string attribResult = didSystem.GetAttribTransaction(targetDid, "endpoint");
+        string attribResult = didSystem.GetAttribTransaction(userDid, targetDid, "endpoint");
 
         JObject attribJobject = JObject.Parse(attribResult);
         string attribData = attribJobject.GetValue("result").Value<JObject>().GetValue("data").Value<string>();

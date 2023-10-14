@@ -74,7 +74,7 @@
     <Compile Include="Assets\Assets\M2Mqtt\Net\Fx.cs" />
     <Compile Include="Assets\Assets\M2Mqtt\Messages\MqttMsgConnectEventArgs.cs" />
     <Compile Include="Assets\Assets\M2Mqtt\Messages\MqttMsgPubrec.cs" />
-    <Compile Include="Assets\Scripts\DIDSystem.cs" />
+    <Compile Include="Assets\Scripts\DidSystem.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Assets\M2Mqtt\Messages\MqttMsgSubscribeEventArgs.cs" />
     <Compile Include="Assets\Scripts\DidUser.cs" />
