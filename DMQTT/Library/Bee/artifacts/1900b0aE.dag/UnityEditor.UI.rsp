@@ -114,7 +114,7 @@
 -define:PACKAGE_ANIMATION
 -define:CSHARP_7_OR_LATER
 -define:CSHARP_7_3_OR_NEWER
--r:"Assets/Packages/Hyperledger.Indy.Sdk.1.8.0/lib/netstandard2.0/Hyperledger.Indy.Sdk.dll"
+-r:"Assets/Packages/Hyperledger.Indy.Sdk.1.11.1/lib/netstandard2.0/Hyperledger.Indy.Sdk.dll"
 -r:"Assets/Packages/Newtonsoft.Json.13.0.3/lib/netstandard2.0/Newtonsoft.Json.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2021.3.29f1/Editor/Data/Managed/UnityEditor.Graphs.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2021.3.29f1/Editor/Data/Managed/UnityEngine/UnityEditor.CoreModule.dll"

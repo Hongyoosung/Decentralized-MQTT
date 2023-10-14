@@ -97,9 +97,12 @@ public class DidUser : MonoBehaviour
     {
         Debug.Log("PackMessage : " + message);
 
+        byte[] bytes = System.Text.Encoding.UTF8.GetBytes(message);
+
+        Debug.Log("bytes: " + BitConverter.ToString(bytes));
+
         byte[] packedMessage = Crypto.PackMessageAsync(wallet, didAndVerkey.VerKey,
-            targetVk,
-            System.Text.Encoding.UTF8.GetBytes(message)).Result;
+            targetDid, bytes).Result;
 
         Debug.Log("packedMessage: " + packedMessage.ToString());
 

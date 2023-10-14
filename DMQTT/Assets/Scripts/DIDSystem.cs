@@ -57,7 +57,8 @@ public class DidSystem : MonoBehaviour
         string genesisFile_ = httpClient.CreateGenesisFile(genesisFilePath);
 
         Debug.Log("Pool Start");
-        /*
+        
+        
         string resolveData = DidResolver.resolve(didSystem, userDid, targetDid);
         JObject resolveDataJson = JObject.Parse(resolveData);
 
@@ -66,7 +67,7 @@ public class DidSystem : MonoBehaviour
 
         string serviceEndpoint = serviceArray[0]["serviceEndpoint"].ToString();
         Debug.Log("serviceEndpoint: " + serviceEndpoint);
-        */
+        
         ConnectionPool();
     }
 
