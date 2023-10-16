@@ -66,7 +66,7 @@ namespace M2MqttUnity.Examples
 
         [Header("MQTT Settings")]
         [Tooltip("Topic to subscribe to")]
-        public string topic;
+        public List<string> topic;
         public string targetDid;
 
         protected override void Start()
@@ -82,9 +82,12 @@ namespace M2MqttUnity.Examples
         
         public void TestPublish()
         {
-            client.Publish(topic, System.Text.Encoding.UTF8.GetBytes("Test message"), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, false);
-            Debug.Log("Test message published");
-            AddUiMessage("Test message published.");
+            foreach (string i in topic)
+            {
+                client.Publish(i, System.Text.Encoding.UTF8.GetBytes("Test message"), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, false);
+                Debug.Log("Test message published");
+                AddUiMessage("Test message published.");
+            }
         }
 
         public void SetBrokerAddress(string brokerAddress)
@@ -110,13 +113,16 @@ namespace M2MqttUnity.Examples
             {
                 string message = messageInputField.text;
 
-                string signedMessage = didUser.PackMessage(message, targetDid);
+                //string signedMessage = didUser.PackMessage(message, targetDid);
 
                 if (message != "")
                 {
-                    client.Publish(topic, System.Text.Encoding.UTF8.GetBytes(signedMessage), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, false);
-                    Debug.Log("Message published");
-                    AddUiMessage("Message published.");
+                    foreach (string i in topic)
+                    {
+                        client.Publish(i, System.Text.Encoding.UTF8.GetBytes(message), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, false);
+                        Debug.Log("Message published");
+                        AddUiMessage("Message published.");
+                    }
                 }
             }
         }
@@ -126,7 +132,7 @@ namespace M2MqttUnity.Examples
             base.OnConnected();
             SetUiMessage("Connected to broker on " + brokerAddress + "\n");
 
-            didUser.StartDPKI(didSystem, httpClient);
+            //didUser.StartDPKI(didSystem, httpClient);
 
             if (autoTest)
             {
@@ -166,12 +172,20 @@ namespace M2MqttUnity.Examples
 
         protected override void SubscribeTopics()
         {
-            client.Subscribe(new string[] { topic }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
+            foreach (string i in topic)
+            {
+                client.Subscribe(new string[] { i }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
+            }
+            //client.Subscribe(new string[] { topic }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
         }
 
         protected override void UnsubscribeTopics()
         {
-            client.Unsubscribe(new string[] { topic });
+            foreach (string i in topic)
+            {
+                client.Unsubscribe(new string[] { i });
+            }
+            //client.Unsubscribe(new string[] { topic });
         }
 
         protected override void OnConnectionFailed(string errorMessage)
@@ -242,12 +256,16 @@ namespace M2MqttUnity.Examples
             string msg = System.Text.Encoding.UTF8.GetString(message);
             Debug.Log("Received: " + msg);
             StoreMessage(msg);
-            if (topic == this.topic)
+
+            foreach (string i in this.topic)
             {
-                if (autoTest)
+                if (topic == i)
                 {
-                    autoTest = false;
-                    Disconnect();
+                    if (autoTest)
+                    {
+                        autoTest = false;
+                        Disconnect();
+                    }
                 }
             }
         }

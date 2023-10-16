@@ -2541,7 +2541,9 @@ MonoBehaviour:
   testPublishButton: {fileID: 669316352}
   clearButton: {fileID: 1573663948}
   sendButton: {fileID: 199968196}
-  topic: mytopic123
+  topic:
+  - myTopic1
+  - myTopic2
   targetDid: qwe1123123123123
 --- !u!4 &1699045183
 Transform:
@@ -2570,7 +2572,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f9f580ad2224e2419de81ffcea7c8ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  userDid: issuer00000000000000000000000000
+  targetVk: sdasdadinadowindoianwido123
+  userDid: userDid00000000000000000000000000
+  targetDid: targetDid00000000000000000000000000
 --- !u!114 &1699045185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2596,8 +2600,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a72ca30a5eef2e2469a8e0a6b691dfee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  didIssuerSeed: issuer00000000000000000000000000
-  didHolderSeed: holder00000000000000000000000000
 --- !u!1 &1740149081
 GameObject:
   m_ObjectHideFlags: 0
