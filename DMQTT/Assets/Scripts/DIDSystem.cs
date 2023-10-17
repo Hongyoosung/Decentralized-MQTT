@@ -232,6 +232,8 @@ public class DidSystem : MonoBehaviour
     public string GetNymTransaction(string userDid, string target_did)
     {
         string submitter_did = userDid;
+        Debug.Log("submitter_did: " + submitter_did);
+        Debug.Log("target_did: " + target_did);
 
         string nym_request = Ledger.BuildGetNymRequestAsync(submitter_did, target_did).Result;
         Debug.Log("nym_request: " + nym_request);

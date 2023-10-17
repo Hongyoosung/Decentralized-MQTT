@@ -38,7 +38,7 @@ public class DidUser : MonoBehaviour
     public void StartDPKI(DidSystem didSystem, HttpClient httpclient)
     {
         // Get instance of DidSystem
-        didSystem = DidSystem.GetInstance();
+        //didSystem = DidSystem.GetInstance();
 
         // Create and open a new wallet using the methods from DidSystem
         this.wallet = didSystem.CreateWalletTest();
@@ -46,11 +46,11 @@ public class DidUser : MonoBehaviour
         // Create and store a new DID using the methods from DidSystem
         this.didAndVerkey = didSystem.CreateDidInWalletTest(wallet, userDid);
 
-        WalletCreateAndOpen();
-        CreateAndStoreDid();
+        //WalletCreateAndOpen();
+        //CreateAndStoreDid();
 
 
-        CreateAndStoreMyDidResult didAndVerkey = didSystem.CreateDidInWalletTest(wallet, userDid);
+        //CreateAndStoreMyDidResult didAndVerkey = didSystem.CreateDidInWalletTest(wallet, userDid);
 
         didSystem.StartDidSyetem(didSystem, httpclient, userDid, targetDid);
     }
