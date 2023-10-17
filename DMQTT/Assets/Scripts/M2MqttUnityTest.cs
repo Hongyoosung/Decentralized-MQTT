@@ -113,13 +113,13 @@ namespace M2MqttUnity.Examples
             {
                 string message = messageInputField.text;
 
-                string signedMessage = didUser.PackMessage(message, targetDid);
+                //string signedMessage = didUser.PackMessage(message, targetDid);
 
                 if (message != "")
                 {
                     foreach (string i in topic)
                     {
-                        client.Publish(i, System.Text.Encoding.UTF8.GetBytes(signedMessage), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, false);
+                        client.Publish(i, System.Text.Encoding.UTF8.GetBytes(message), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, false);
                         Debug.Log("Message published");
                         AddUiMessage("Message published.");
                     }
@@ -132,7 +132,7 @@ namespace M2MqttUnity.Examples
             base.OnConnected();
             SetUiMessage("Connected to broker on " + brokerAddress + "\n");
 
-            didUser.StartDPKI(didSystem, httpClient);
+            //didUser.StartDPKI(didSystem, httpClient);
 
             if (autoTest)
             {
@@ -143,6 +143,7 @@ namespace M2MqttUnity.Examples
         public void SetEncrypted(bool isEncrypted)
         {
             this.isEncrypted = isEncrypted;
+            Debug.Log("isEncrypted: " + isEncrypted);
         }
 
 
