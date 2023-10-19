@@ -117,8 +117,10 @@
     <None Include="Assets\Packages\Newtonsoft.Json.13.0.3\lib\netstandard2.0\Newtonsoft.Json.xml" />
     <None Include="Assets\Packages\Hyperledger.Indy.Sdk.1.11.1\lib\netstandard2.0\Hyperledger.Indy.Sdk.dll" />
     <None Include="Assets\Assets\M2Mqtt\epl-v10.txt" />
+    <None Include="Assets\Packages\Portable.BouncyCastle.1.9.0\lib\netstandard2.0\BouncyCastle.Crypto.dll" />
     <None Include="Assets\Assets\M2Mqtt\edl-v10.txt" />
     <None Include="Assets\Packages\Hyperledger.Indy.Sdk.1.11.1\lib\netstandard2.0\Hyperledger.Indy.Sdk.xml" />
+    <None Include="Assets\Packages\Portable.BouncyCastle.1.9.0\lib\netstandard2.0\BouncyCastle.Crypto.xml" />
     <None Include="Assets\Assets\M2Mqtt\M2Mqtt_LICENSE.txt" />
     <None Include="Assets\Packages\Newtonsoft.Json.13.0.3\lib\netstandard2.0\Newtonsoft.Json.dll" />
   </ItemGroup>
@@ -380,6 +382,9 @@
     </Reference>
     <Reference Include="ReportGeneratorMerged">
       <HintPath>Library\PackageCache\com.unity.testtools.codecoverage@1.2.4\lib\ReportGenerator\ReportGeneratorMerged.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Crypto">
+      <HintPath>Assets\Packages\Portable.BouncyCastle.1.9.0\lib\netstandard2.0\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.29f1\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>

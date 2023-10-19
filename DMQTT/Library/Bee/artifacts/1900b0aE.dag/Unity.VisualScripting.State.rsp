@@ -116,6 +116,7 @@
 -define:CSHARP_7_3_OR_NEWER
 -r:"Assets/Packages/Hyperledger.Indy.Sdk.1.11.1/lib/netstandard2.0/Hyperledger.Indy.Sdk.dll"
 -r:"Assets/Packages/Newtonsoft.Json.13.0.3/lib/netstandard2.0/Newtonsoft.Json.dll"
+-r:"Assets/Packages/Portable.BouncyCastle.1.9.0/lib/netstandard2.0/BouncyCastle.Crypto.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2021.3.29f1/Editor/Data/Managed/UnityEditor.Graphs.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2021.3.29f1/Editor/Data/Managed/UnityEngine/UnityEditor.CoreModule.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2021.3.29f1/Editor/Data/Managed/UnityEngine/UnityEditor.DeviceSimulatorModule.dll"
