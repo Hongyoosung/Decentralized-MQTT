@@ -54,9 +54,7 @@ namespace M2MqttUnity.Examples
     {
         private List<string> eventMessages = new List<string>();
         private bool updateUI = false;
-        private DidUser didUser;
-        private HttpClient httpClient;
-        private DidSystem didSystem;
+        
 
         [Tooltip("Set this to true to perform a testing cycle automatically on startup")]
         public bool autoTest = false;
@@ -72,51 +70,12 @@ namespace M2MqttUnity.Examples
         public Button clearButton;
         public Button sendButton;
 
-        //string publicKey, privateKey;
-
-        private string privateKey =
-@"-----BEGIN RSA PRIVATE KEY-----
-MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCvUmQXXc30gdks
-sUxiDe1lrR97BMAeVBzrSm61Lj3mmiOYJ+N/BhpVZa3K3AORscOq59ikds3hJd6U
-o7i4XLy0yqBLjw+oKg7vp+DGHhUXAepEUu3RxXvfPiShh8U1s4sfgTNun+sl5A69
-M1NaVfMMDts3Qfc8orM6jvfxlqNFeVqWVyUQjiJ1E5fqnCiV5WLWV/7NuWxEIVhp
-0gmI3QNvpU9aF4mutbAmgtn21wFnT4i+EZ4eLwueSUEmMSRcuxykhqBgl1P1GKH5
-N/i3aClOwVaZX7fme4SWIipwWL/WGl/kw/QtAFud56cFifOekG5t2QZdWYdGuTbj
-hilx0eU1AgMBAAECggEAK5d5yZGKTvwmKoWe71Z1K23DQQwqVKAnXJ1yL1xjCb5T
-kVaBqyiyTX9tmd3giU5Az3K8HBBqGkwXLrASksyEIxOqjX7xrqdedVoxejEqn0Db
-pcdU2G6Y4SYLZ5phf3u34Mp4Jk5e4ln1DDgBxplOSDY9bVzag1oU5D9+CLSivfgH
-ykDAgV68bZ8WpyuoI4JixChz2rvmWGDu0qjqHnTwV0r08MUMEblswco1Q1ZVcqVz
-mRc065E5xrZS7w/49f7E+oVrmE+hG3TC7why+eaNnlcGACxDnOCfZs0vCGzkS7iC
-42+5NR16co39gP9B9hAy8V2zXLxrD01KWV1ToBT8dQKBgQDlv+AHejWLlMfFEMLx
-QGHp9MRQ+62ePAuKeFv3bT5u1+/rCAxJ4Ufg5oNU7g7rmdyPrnNFR6bmhcasIo8M
-fA3DMdGfYg0TVpqsOjVYOc/Q2zRpByYvDjRUfmxSzexP/Rl1iin+R2xukVhP+H4Z
-OmBIB5HuXSS9xsGR6J6TZ+xBywKBgQDDWoSVSE8afeTqpee+TIjjT2eIYTvom+5K
-L93nYrk6dXCLpdPPWfdEeiiJ3VFBai1TOtc75zK88+9RpGYIQxdI3n1LDpuzNYB7
-shsmjqHrsLtw5A5Fih2NE1FknAfZFOT5D0K+CInMt3dBUuHsP7zR/qRm2Bnk6zdj
-BI5N6/mU/wKBgHkYdE2cpYJnrg/5sLaWN8WnxJ3mufEwNukKXXcBtqmX2ZYpDMkY
-G9m3xjtKqsSVuYJl8c3vYVIZ6siqAnoTHPHoXVPDy56IxEfI+nsBJb8w+uPs57xf
-oUdzx0ax0T+r6PJiG5YyMT3qEAE+ucA0W7E7hDh+EbKRg0+Tq5mIaieXAoGAWZXb
-EzJzxCxTnB+05JnodIVnby1X8dYAMtk8o+2sD9jnYcMMHRyevjJfAMoThzIP0wk6
-xufBZtFewEvp1oQd23bccl0inc49O3xz4vyp2JHVg3Gx8cXiw11GiCLdnnlsf6K1
-8rurpcvEzpoZrOOVzZ8++ULErSwI3EmskKNUczUCgYBIRoMcqpdHnc3j6Hs7P3uv
-Pd9B2MjQUMYiMUHmKTc8cGRDThNA4o8vW9yySwtPUBA04SK5PuwxaB2Bq1eXrjH9
-Luc3FvO+yFXc9m8OG3grsQfyfKIqvs3N3kFX5+uJG2QSZHEHrLoM2LTrQSnFs20D
-G6diGqRC5ni";
-        private string publicKey = @"-----BEGIN PUBLIC KEY-----
-MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAr1JkF13N9IHZLLFMYg3t
-Za0fewTAHlQc60putS495pojmCfjfwYaVWWtytwDkbHDqufYpHbN4SXelKO4uFy8
-tMqgS48PqCoO76fgxh4VFwHqRFLt0cV73z4koYfFNbOLH4Ezbp/rJeQOvTNTWlXz
-DA7bN0H3PKKzOo738ZajRXlallclEI4idROX6pwoleVi1lf+zblsRCFYadIJiN0D
-b6VPWheJrrWwJoLZ9tcBZ0+IvhGeHi8LnklBJjEkXLscpIagYJdT9Rih+Tf4t2gp
-TsFWmV+35nuEliIqcFi/1hpf5MP0LQBbneenBYnznpBubdkGXVmHRrk244YpcdHl
-NQIDAQAB
------END PUBLIC KEY-----
-";
-        
         [Header("MQTT Settings")]
         [Tooltip("Topic to subscribe to")]
         public List<string> topic;
         public string targetDid;
+
+        private IndyTest indyTest;
 
         protected override void Start()
         {
@@ -124,16 +83,61 @@ NQIDAQAB
             updateUI = true;
             base.Start();
 
-            
-            //GenerateKeyPair(out publicKey, out privateKey);
-
-            Debug.Log("Public Key: " + publicKey);
-            Debug.Log("Private Key: " + privateKey);
-
-            didUser = this.GetComponent<DidUser>();
-            httpClient = this.GetComponent<HttpClient>();
-            didSystem = this.GetComponent<DidSystem>();
+            indyTest = GetComponent<IndyTest>();
         }
+
+        protected override void OnConnected()
+        {
+            base.OnConnected();
+            SetUiMessage("Connected to broker on " + brokerAddress + "\n");
+
+            indyTest.StartIndy();
+
+            if (autoTest)
+            {
+                TestPublish();
+            }
+        }
+
+        public async void SendMessage2()
+        {
+            if (messageInputField)
+            {
+                string message = messageInputField.text;
+
+                //sing message
+                string signedMessage = await indyTest.SignDataAsync(message);
+
+                // is signed message
+                if(indyTest.VerifySignature(signedMessage, message))
+                {
+                    Debug.Log("Verify Signature Success");
+                }
+                else
+                {
+                    Debug.Log("Verify Signature Fail");
+                }
+
+                if (message != "")
+                {
+                    foreach (string i in topic)
+                    {
+                        client.Publish(i, Encoding.UTF8.GetBytes(signedMessage), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, false);
+
+                        
+                        AddUiMessage("Message published.");
+                    }
+                }
+            }
+        }
+
+        public override void Disconnect()
+        {
+            indyTest.StopIndy();
+            base.Disconnect();
+        }
+
+
 
         public void TestPublish()
         {
@@ -162,42 +166,7 @@ NQIDAQAB
         }
 
 
-        public void SendMessage2()
-        {
-            if (messageInputField)
-            {
-                string message = messageInputField.text;
-
-                //string signedMessage = didUser.PackMessage(message, targetDid);
-
-                if (message != "")
-                {
-                    foreach (string i in topic)
-                    {
-                        //client.Publish(i, System.Text.Encoding.UTF8.GetBytes(message), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, false);
-
-                        PublishEncryptedMessage(i, message);
-                        Debug.Log("Message published");
-                        AddUiMessage("Message published.");
-                    }
-                }
-            }
-        }
-
-        protected override void OnConnected()
-        {
-            base.OnConnected();
-            SetUiMessage("Connected to broker on " + brokerAddress + "\n");
-
-            //didUser.StartDPKI(didSystem, httpClient);
-
-            if (autoTest)
-            {
-                TestPublish();
-            }
-
-
-        }
+        
 
         public void SetEncrypted(bool isEncrypted)
         {
@@ -313,7 +282,7 @@ NQIDAQAB
 
         protected override void DecodeMessage(string topic, byte[] message)
         {
-            /*
+            
             string msg = System.Text.Encoding.UTF8.GetString(message);
             Debug.Log("Received: " + msg);
             StoreMessage(msg);
@@ -329,8 +298,8 @@ NQIDAQAB
                     }
                 }
             }
-             */
-            
+             
+            /*
             string encryptedMsg = Encoding.UTF8.GetString(message);
             Debug.Log("Received encrypted message: " + encryptedMsg);
 
@@ -340,7 +309,7 @@ NQIDAQAB
             Debug.Log("Decrypted message: " + decryptedMsg);
 
             base.DecodeMessage(topic, Encoding.UTF8.GetBytes(decryptedMsg));
-            
+            */
         }
 
         private void StoreMessage(string eventMsg)
