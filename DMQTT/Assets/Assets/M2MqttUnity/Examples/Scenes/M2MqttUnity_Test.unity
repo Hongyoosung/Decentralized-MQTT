@@ -2533,7 +2533,6 @@ MonoBehaviour:
   sendButton: {fileID: 199968196}
   topic:
   - myTopic1
-  - myTopic2
   targetDid: qwe1123123123123
 --- !u!4 &1699045183
 Transform:
