@@ -12,6 +12,7 @@ using Hyperledger.Indy.PoolApi;
 using Hyperledger.Indy.CryptoApi;
 using System.Text;
 using System.Threading.Tasks;
+using Hyperledger.Indy.LedgerApi;
 
 public class IndyTest : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class IndyTest : MonoBehaviour
     private CreateAndStoreMyDidResult did = null;
     private Pool pool_handle = null;
     public Text text;
+    public string genesis_file_;
 
 
     public void StartIndy()
@@ -33,7 +35,7 @@ public class IndyTest : MonoBehaviour
         System.Random random = new System.Random();
         int randomNumber = random.Next(10000, 99999);
         wallet_name = "wallet" + randomNumber.ToString();
-        pool_name = "pool" + randomNumber.ToString();
+        pool_name = "my_pool1";
 
         test_url = "http://220.68.5.139:9000/genesis";
         wallet_config = "{\"id\":\"" + wallet_name + "\"}";
@@ -41,7 +43,7 @@ public class IndyTest : MonoBehaviour
         genesis_file_path = Application.dataPath + "/genesis.txn";
         pool_config = "{\"genesis_txn\":\"" + genesis_file_path + "\"}";       
         HttpClient httpClient = HttpClient.GetInstance();
-        string genesis_file_ = httpClient.CreateGenesisFile(genesis_file_path, test_url);
+        //genesis_file_ = httpClient.CreateGenesisFile(genesis_file_path, test_url);
         Debug.Log("genesis_file_: " + genesis_file_);
 
 
@@ -100,24 +102,34 @@ public class IndyTest : MonoBehaviour
         
     }
 
-    public void IndyPoolApiTestFun()
+    public async void IndyPoolApiTestFun()
     {
-        if (false == File.Exists(genesis_file_path))
-        {
-            Debug.Log("Genesis File is Null");
-            return;
-        }
+       if (false == File.Exists(genesis_file_path))
+       {
+           Debug.Log("Genesis File is Null");
+           return;
+       }
 
         
-         Debug.Log("Pool Config: " + pool_config);
+        Debug.Log("Pool Config: " + pool_config);
         
-         Debug.Log("Indy Create Pool Ledger Config");
-         Pool.CreatePoolLedgerConfigAsync(pool_name, pool_config).Wait();
+        Debug.Log("Indy Create Pool Ledger Config");
+        Pool.CreatePoolLedgerConfigAsync(pool_name, pool_config).Wait();
 
-         Debug.Log("Indy Open Pool Ledger");
-         pool_handle = Pool.OpenPoolLedgerAsync(pool_name, pool_config).Result;
-         Debug.Log("Pool Handle: " + pool_handle.ToString());
+        Debug.Log("Indy Open Pool Ledger");
+        pool_handle = Pool.OpenPoolLedgerAsync(pool_name, pool_config).Result;
+        Debug.Log("Pool Handle: " + pool_handle.ToString());
 
+        // 트랜잭션 조회
+        Debug.Log("Indy Build Get Txn Request");
+        string submitterDid = null; // 조회를 요청하는 DID
+        int seqNo = 1; // 조회를 원하는 트랜잭션의 시퀀스 번호
+        string request = await Ledger.BuildGetTxnRequestAsync(submitterDid, null, seqNo);
+
+        Debug.Log("Indy Submit Request");
+        string response = await Ledger.SubmitRequestAsync(pool_handle, request);
+
+        Debug.Log("Txn Response: " + response);
     }
 
     public string PackMessage(string message, string targetDid)

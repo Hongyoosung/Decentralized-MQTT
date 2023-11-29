@@ -126,6 +126,7 @@ public class HttpClient : MonoBehaviour
             Debug.LogError("GET 요청 실패: " + error);
         });
 
+        
         return genesis_file;
     }
 }
