@@ -41,6 +41,14 @@ using Org.BouncyCastle.Security;
 using Org.BouncyCastle.Crypto.Parameters;
 using System.IO;
 using Org.BouncyCastle.Bcpg.OpenPgp;
+using UnityEditor.PackageManager;
+using Hyperledger.Indy.CryptoApi;
+using Hyperledger.Indy.LedgerApi;
+using System.Threading.Tasks;
+using UnityEditor.Callbacks;
+using Newtonsoft.Json;
+using Hyperledger.Indy.DidApi;
+using System.Security.Cryptography.X509Certificates;
 
 /// <summary>
 /// Examples for the M2MQTT library (https://github.com/eclipse/paho.mqtt.m2mqtt),
@@ -129,6 +137,62 @@ namespace M2MqttUnity.Examples
                     }
                 }
             }
+        }
+
+        protected override void DecodeMessage(string topic, byte[] message)
+        {
+            /*foreach (string i in this.topic)
+            {
+                if (topic == i)
+                {
+                    if (autoTest)
+                    {
+                        autoTest = false;
+                        Disconnect();
+                    }
+                }
+            }*/
+
+            string msg = System.Text.Encoding.UTF8.GetString(message);
+            Debug.Log("Received: " + msg);
+
+            
+            
+            StoreMessage(msg);
+            // Process the received message
+            
+        }
+
+        
+
+        
+
+
+
+        private async Task<bool> SetDidMetadataAsync(Wallet walletHandle, string did, string metadata)
+        {
+            try
+            {
+                await Did.SetDidMetadataAsync(walletHandle, did, metadata);
+                return true; // Set DID metadata successful
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"Error setting DID metadata: {ex.Message}");
+                return false; // Set DID metadata failed
+            }
+        }
+
+
+
+
+
+        [Serializable]
+        private class DeviceData
+        {
+            public string Did;
+            public string Data;
+            public string Signature;
         }
 
         public override void Disconnect()
@@ -280,37 +344,6 @@ namespace M2MqttUnity.Examples
             updateUI = false;
         }
 
-        protected override void DecodeMessage(string topic, byte[] message)
-        {
-            
-            string msg = System.Text.Encoding.UTF8.GetString(message);
-            Debug.Log("Received: " + msg);
-            StoreMessage(msg);
-
-            foreach (string i in this.topic)
-            {
-                if (topic == i)
-                {
-                    if (autoTest)
-                    {
-                        autoTest = false;
-                        Disconnect();
-                    }
-                }
-            }
-             
-            /*
-            string encryptedMsg = Encoding.UTF8.GetString(message);
-            Debug.Log("Received encrypted message: " + encryptedMsg);
-
-            byte[] decryptedMsgBytes = DecryptString(encryptedMsg, privateKey);
-            string decryptedMsg = Encoding.UTF8.GetString(decryptedMsgBytes);
-
-            Debug.Log("Decrypted message: " + decryptedMsg);
-
-            base.DecodeMessage(topic, Encoding.UTF8.GetBytes(decryptedMsg));
-            */
-        }
 
         private void StoreMessage(string eventMsg)
         {

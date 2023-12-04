@@ -24,7 +24,7 @@ public class DidUser : MonoBehaviour
 
     public CreateAndStoreMyDidResult didAndVerkey;
 
-    public string didSeed = "issuer00000000000000000000000000";
+    public string didSeed = "issuer10000000000000000000000000";
 
     string walletConfig;
     string walletCredentials;

@@ -23,9 +23,9 @@ public class IndyTest : MonoBehaviour
     private string test_url;
     private string pool_name;
     private string pool_config;
-    private Wallet wallet_handle = null;
+    public Wallet wallet_handle = null;
     private CreateAndStoreMyDidResult did = null;
-    private Pool pool_handle = null;
+    public Pool pool_handle = null;
     public Text text;
     public string genesis_file_;
 
@@ -35,7 +35,7 @@ public class IndyTest : MonoBehaviour
         System.Random random = new System.Random();
         int randomNumber = random.Next(10000, 99999);
         wallet_name = "wallet" + randomNumber.ToString();
-        pool_name = "my_pool1";
+        pool_name = "my_pool6";
 
         test_url = "http://220.68.5.139:9000/genesis";
         wallet_config = "{\"id\":\"" + wallet_name + "\"}";
@@ -92,7 +92,7 @@ public class IndyTest : MonoBehaviour
          Debug.Log("Wallet Handle: " + wallet_handle.ToString());
 
          Debug.Log("Indy Create DID");
-         string did_json = "{\"seed\":\"test0000000000000000000000000000\"}";
+         string did_json = "{\"seed\":\"issuer10000000000000000000000000\"}";
          did = Did.CreateAndStoreMyDidAsync(wallet_handle, did_json).Result;
          Debug.Log("DID: " + did);
 
