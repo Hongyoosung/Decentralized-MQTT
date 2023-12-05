@@ -47,7 +47,6 @@ using Hyperledger.Indy.LedgerApi;
 using System.Threading.Tasks;
 using UnityEditor.Callbacks;
 using Newtonsoft.Json;
-using Hyperledger.Indy.DidApi;
 using System.Security.Cryptography.X509Certificates;
 
 /// <summary>
@@ -117,22 +116,21 @@ namespace M2MqttUnity.Examples
                 string signedMessage = await indyTest.SignDataAsync(message);
 
                 // is signed message
-                if(indyTest.VerifySignature(signedMessage, message))
+                /*if(indyTest.VerifySignature(signedMessage, message))
                 {
                     Debug.Log("Verify Signature Success");
                 }
                 else
                 {
                     Debug.Log("Verify Signature Fail");
-                }
+                }*/
 
                 if (message != "")
                 {
                     foreach (string i in topic)
                     {
-                        client.Publish(i, Encoding.UTF8.GetBytes(signedMessage), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, false);
+                        client.Publish(i, Encoding.UTF8.GetBytes(message), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, false);
 
-                        
                         AddUiMessage("Message published.");
                     }
                 }
@@ -156,52 +154,95 @@ namespace M2MqttUnity.Examples
             string msg = System.Text.Encoding.UTF8.GetString(message);
             Debug.Log("Received: " + msg);
 
-            
-            
+
             StoreMessage(msg);
+            ProcessReceivedMessage(msg);
             // Process the received message
-            
         }
-
-        
-
-        
-
-
-
-        private async Task<bool> SetDidMetadataAsync(Wallet walletHandle, string did, string metadata)
-        {
-            try
-            {
-                await Did.SetDidMetadataAsync(walletHandle, did, metadata);
-                return true; // Set DID metadata successful
-            }
-            catch (Exception ex)
-            {
-                Debug.LogError($"Error setting DID metadata: {ex.Message}");
-                return false; // Set DID metadata failed
-            }
-        }
-
-
 
 
 
         [Serializable]
-        private class DeviceData
+        private struct DeviceData
         {
-            public string Did;
-            public string Data;
+            public string Distance;
             public string Signature;
+            public string Did;
         }
 
+
+        private async void ProcessReceivedMessage(string receivedMessage)
+        {
+            try
+            {
+                // Deserialize the JSON message
+                var messageObject = JsonConvert.DeserializeObject<DeviceData>(receivedMessage);
+
+                // Extract the DID from the received message
+                string receivedDid = messageObject.Did;
+
+                // Query the pool to get the public key associated with the received DID
+                string publicKey = await GetPublicKeyFromPoolAsync(receivedDid);
+
+                if (publicKey != null)
+                {
+                    // using the public key, verify the signature of the received message
+                    bool isSignatureValid = await indyTest.VerifySignature(messageObject.Signature, messageObject.Distance, publicKey);
+
+                    if (isSignatureValid)
+                    {
+                        Debug.Log("Signature verification successful.");
+                    }
+                    else
+                    {
+                        Debug.Log("Signature verification failed.");
+                    }
+                }
+                else
+                {
+                    Debug.LogError("Failed to retrieve public key for the received DID from the pool.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"Error processing received message: {ex.Message}");
+            }
+        }
+
+        private async Task<string> GetPublicKeyFromPoolAsync(string did)
+        {
+            try
+            {
+                // Set DID metadata (empty JSON)
+                var didResult = Did.SetDidMetadataAsync(indyTest.wallet_handle, did, "{}");
+
+                // Get the public key from the pool
+                var keyForDidResult = await Did.KeyForDidAsync(indyTest.pool_handle, indyTest.wallet_handle, did);
+
+                Debug.Log("Device did: " + did);
+                Debug.Log("publicKey: " + keyForDidResult);
+
+                return keyForDidResult;
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"Error getting public key from the pool: {ex.Message}");
+                return null;
+            }
+        }
+
+
+
+
+
+        /// <summary>
+        /// ////////////////////////////////////////////////////////////////////
+        /// </summary>
         public override void Disconnect()
         {
             indyTest.StopIndy();
             base.Disconnect();
         }
-
-
 
         public void TestPublish()
         {
@@ -228,9 +269,6 @@ namespace M2MqttUnity.Examples
                 int.TryParse(brokerPort, out this.brokerPort);
             }
         }
-
-
-        
 
         public void SetEncrypted(bool isEncrypted)
         {
@@ -388,26 +426,6 @@ namespace M2MqttUnity.Examples
             }
         }
 
-        public string EncryptString(string plainText, string publicKey)
-        {
-            using (var rsa = new RSACryptoServiceProvider(2048))
-            {
-                try
-                {
-                    rsa.FromXmlString(publicKey.ToString());
-                    var encryptedData = rsa.Encrypt(Encoding.UTF8.GetBytes(plainText), true);
-                    var base64Encrypted = Convert.ToBase64String(encryptedData);
-                    return base64Encrypted;
-                }
-                finally
-                {
-                    rsa.PersistKeyInCsp = false; // Set this to false to avoid permission issues.
-                }
-            }
-
-
-        }
-
         public void PublishEncryptedMessage(string topic, string message)
         {
             // Replace 'publicKey' with the actual public key of the receiver.
@@ -418,52 +436,6 @@ namespace M2MqttUnity.Examples
                            MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE,
                            false);
             */
-        }
-
-        public byte[] DecryptString(string cipherText, string pemPrivateKey)
-        {
-            using (var rsa = new RSACryptoServiceProvider(2048))
-            {
-                try
-                {
-                    string xmlPrivateKey = ConvertPemToXml(pemPrivateKey);
-                    rsa.FromXmlString(xmlPrivateKey);
-
-                    var base64Encrypted = Convert.FromBase64String(cipherText);
-                    var decryptedData = rsa.Decrypt(base64Encrypted, false); // Use 'false' for PKCS#1 v1.5 padding.
-
-                    return decryptedData;
-                }
-                finally
-                {
-                    rsa.PersistKeyInCsp = false;
-                }
-            }
-        }
-
-        public void GenerateKeyPair(out string publicKey, out string privateKey)
-        {
-            using (var rsa = new RSACryptoServiceProvider(2048))
-            {
-                rsa.PersistKeyInCsp = false; // Don't store the keys in a key container
-                publicKey = rsa.ToXmlString(false); // False to get the public key
-                privateKey = rsa.ToXmlString(true); // True to get the private key
-            }
-        }
-
-        private string ConvertPemToXml(string pemPrivateKey)
-        {
-            using (var textReader = new StringReader(pemPrivateKey))
-            {
-                var pemReader = new PemReader(textReader);
-                var keyPair = (AsymmetricCipherKeyPair)pemReader.ReadObject();
-                var rsaParams = DotNetUtilities.ToRSAParameters((RsaPrivateCrtKeyParameters)keyPair.Private);
-
-                var rsaProvider = new RSACryptoServiceProvider();
-                rsaProvider.ImportParameters(rsaParams);
-
-                return rsaProvider.ToXmlString(true);
-            }
         }
     }
 }

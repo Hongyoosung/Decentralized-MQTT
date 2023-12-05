@@ -21,7 +21,7 @@ public class IndyTest : MonoBehaviour
     private string wallet_name;
     private string genesis_file_path = null;
     private string test_url;
-    private string pool_name;
+    public string pool_name;
     private string pool_config;
     public Wallet wallet_handle = null;
     private CreateAndStoreMyDidResult did = null;
@@ -35,7 +35,6 @@ public class IndyTest : MonoBehaviour
         System.Random random = new System.Random();
         int randomNumber = random.Next(10000, 99999);
         wallet_name = "wallet" + randomNumber.ToString();
-        pool_name = "my_pool6";
 
         test_url = "http://220.68.5.139:9000/genesis";
         wallet_config = "{\"id\":\"" + wallet_name + "\"}";
@@ -165,20 +164,34 @@ public class IndyTest : MonoBehaviour
         }
     }
 
-    public bool VerifySignature(string signedMessage, string message)
+    public async Task<bool> VerifySignature(string signedMessage, string message, string publicKey)
     {
         try
         {
-            // Base64 문자열로 된 서명을 바이트 배열로 변환
-            byte[] signature = Convert.FromBase64String(signedMessage);
+            // Null 체크와 Base64 형식 확인
+            if (string.IsNullOrEmpty(signedMessage) || string.IsNullOrEmpty(message))
+            {
+                Debug.Log("Invalid signedMessage or message.");
+                return false;
+            }
+
+            // 서명된 메시지를 바이트 배열로 변환
+            byte[] signedMessageBytes = Convert.FromBase64String(signedMessage);
 
             // 메시지를 바이트 배열로 변환
             byte[] messageBytes = Encoding.UTF8.GetBytes(message);
 
-            // 서명 검증
-            bool isValid = Crypto.VerifyAsync(did.VerKey, messageBytes, signature).Result;
+            // Null 체크
+            if (signedMessageBytes == null || messageBytes == null)
+            {
+                Debug.Log("Error converting to byte array.");
+                return false;
+            }
 
-            return isValid;
+            // 서명된 메시지를 검증
+            bool valid = await Crypto.VerifyAsync(publicKey, messageBytes, signedMessageBytes);
+
+            return valid;
         }
         catch (Exception ex)
         {
@@ -186,4 +199,5 @@ public class IndyTest : MonoBehaviour
             return false;
         }
     }
+
 }
