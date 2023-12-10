@@ -165,8 +165,8 @@ namespace M2MqttUnity.Examples
         [Serializable]
         private struct DeviceData
         {
-            public string Distance;
-            public string Signature;
+            public string originData;
+            public string signData;
             public string Did;
         }
 
@@ -187,7 +187,7 @@ namespace M2MqttUnity.Examples
                 if (publicKey != null)
                 {
                     // using the public key, verify the signature of the received message
-                    bool isSignatureValid = await indyTest.VerifySignature(messageObject.Signature, messageObject.Distance, publicKey);
+                    bool isSignatureValid = await indyTest.VerifySignature(messageObject.signData, messageObject.originData, publicKey);
 
                     if (isSignatureValid)
                     {
