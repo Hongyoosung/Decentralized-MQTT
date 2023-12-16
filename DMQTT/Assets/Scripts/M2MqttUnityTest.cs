@@ -48,6 +48,8 @@ using System.Threading.Tasks;
 using UnityEditor.Callbacks;
 using Newtonsoft.Json;
 using System.Security.Cryptography.X509Certificates;
+using System.Linq;
+using System.Diagnostics;
 
 /// <summary>
 /// Examples for the M2MQTT library (https://github.com/eclipse/paho.mqtt.m2mqtt),
@@ -83,6 +85,8 @@ namespace M2MqttUnity.Examples
         public string targetDid;
 
         private IndyTest indyTest;
+        private DateTime sendMessageTime;
+        private DateTime receiveMessageTime;
 
         protected override void Start()
         {
@@ -137,26 +141,14 @@ namespace M2MqttUnity.Examples
             }
         }
 
+
         protected override void DecodeMessage(string topic, byte[] message)
         {
-            /*foreach (string i in this.topic)
-            {
-                if (topic == i)
-                {
-                    if (autoTest)
-                    {
-                        autoTest = false;
-                        Disconnect();
-                    }
-                }
-            }*/
-
             string msg = System.Text.Encoding.UTF8.GetString(message);
-            Debug.Log("Received: " + msg);
 
 
             StoreMessage(msg);
-            ProcessReceivedMessage(msg);
+            Task.Run(async () => await ProcessReceivedMessages(msg));
             // Process the received message
         }
 
@@ -171,12 +163,16 @@ namespace M2MqttUnity.Examples
         }
 
 
-        private async void ProcessReceivedMessage(string receivedMessage)
+        private async Task ProcessReceivedMessages(string receivedMessages)
         {
+
             try
             {
+                Stopwatch stopwatch = new Stopwatch();
+                stopwatch.Start();
+
                 // Deserialize the JSON message
-                var messageObject = JsonConvert.DeserializeObject<DeviceData>(receivedMessage);
+                var messageObject = JsonConvert.DeserializeObject<DeviceData>(receivedMessages);
 
                 // Extract the DID from the received message
                 string receivedDid = messageObject.Did;
@@ -189,24 +185,33 @@ namespace M2MqttUnity.Examples
                     // using the public key, verify the signature of the received message
                     bool isSignatureValid = await indyTest.VerifySignature(messageObject.signData, messageObject.originData, publicKey);
 
+                    // 서명 검증 종료 시간 기록
+                    stopwatch.Stop();
+
                     if (isSignatureValid)
                     {
-                        Debug.Log("Signature verification successful.");
+                        UnityEngine.Debug.Log("Signature verification successful.");
                     }
                     else
                     {
-                        Debug.Log("Signature verification failed.");
+                        UnityEngine.Debug.Log("Signature verification failed.");
                     }
                 }
                 else
                 {
-                    Debug.LogError("Failed to retrieve public key for the received DID from the pool.");
+                    UnityEngine.Debug.LogError("Failed to retrieve public key for the received DID from the pool.");
                 }
+
+                // 측정된 시간 출력
+                TimeSpan elapsed = stopwatch.Elapsed;
+                UnityEngine.Debug.Log($"서명 검증 시간: {elapsed.TotalSeconds} 초");
             }
+
             catch (Exception ex)
             {
-                Debug.LogError($"Error processing received message: {ex.Message}");
+                UnityEngine.Debug.LogError($"Error processing received message: {ex.Message}");
             }
+
         }
 
         private async Task<string> GetPublicKeyFromPoolAsync(string did)
@@ -219,17 +224,18 @@ namespace M2MqttUnity.Examples
                 // Get the public key from the pool
                 var keyForDidResult = await Did.KeyForDidAsync(indyTest.pool_handle, indyTest.wallet_handle, did);
 
-                Debug.Log("Device did: " + did);
-                Debug.Log("publicKey: " + keyForDidResult);
+                UnityEngine.Debug.Log("Device did: " + did);
+                UnityEngine.Debug.Log("publicKey: " + keyForDidResult);
 
                 return keyForDidResult;
             }
             catch (Exception ex)
             {
-                Debug.LogError($"Error getting public key from the pool: {ex.Message}");
+                UnityEngine.Debug.LogError($"Error getting public key from the pool: {ex.Message}");
                 return null;
             }
         }
+
 
 
 
@@ -249,7 +255,7 @@ namespace M2MqttUnity.Examples
             foreach (string i in topic)
             {
                 client.Publish(i, System.Text.Encoding.UTF8.GetBytes("Test message"), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, false);
-                Debug.Log("Test message published");
+                UnityEngine.Debug.Log("Test message published");
                 AddUiMessage("Test message published.");
             }
         }
@@ -273,7 +279,7 @@ namespace M2MqttUnity.Examples
         public void SetEncrypted(bool isEncrypted)
         {
             this.isEncrypted = isEncrypted;
-            Debug.Log("isEncrypted: " + isEncrypted);
+            UnityEngine.Debug.Log("isEncrypted: " + isEncrypted);
         }
 
 
