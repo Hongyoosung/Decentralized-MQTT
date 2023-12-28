@@ -8,7 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{3B3D7C33-BEA9-8A7C-C22B-8AD07D04BC47}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -117,15 +118,20 @@
     <Compile Include="Assets\Assets\M2Mqtt\Net\Fx.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Assets\Packages\Newtonsoft.Json.13.0.3\lib\netstandard2.0\Newtonsoft.Json.xml" />
     <None Include="Assets\AvataDID\Plugins\libsodium.dll" />
     <None Include="Assets\Packages\Hyperledger.Indy.Sdk.1.11.1\lib\netstandard2.0\Hyperledger.Indy.Sdk.dll" />
+    <None Include="Assets\Packages\System.Security.Cryptography.OpenSsl.5.0.0\THIRD-PARTY-NOTICES.TXT" />
     <None Include="Assets\Assets\M2Mqtt\epl-v10.txt" />
+    <None Include="Assets\Packages\System.Security.Cryptography.OpenSsl.5.0.0\LICENSE.TXT" />
     <None Include="Assets\AvataDID\Plugins\ssleay32md.dll" />
     <None Include="Assets\AvataDID\Plugins\indy.dll" />
     <None Include="Assets\AvataDID\Plugins\libzmq.dll" />
     <None Include="Assets\Packages\Portable.BouncyCastle.1.9.0\lib\netstandard2.0\BouncyCastle.Crypto.dll" />
     <None Include="Assets\AvataDID\nodejsTest\test\test.txt" />
+    <None Include="Assets\Packages\System.Security.Cryptography.OpenSsl.5.0.0\useSharedDesignerContext.txt" />
+    <None Include="Assets\Packages\System.Security.Cryptography.OpenSsl.5.0.0\lib\netstandard2.0\System.Security.Cryptography.OpenSsl.xml" />
     <None Include="Assets\AvataDID\Plugins\hello_world.dll" />
     <None Include="Assets\Assets\M2Mqtt\edl-v10.txt" />
     <None Include="Assets\Packages\Hyperledger.Indy.Sdk.1.11.1\lib\netstandard2.0\Hyperledger.Indy.Sdk.xml" />
@@ -133,8 +139,14 @@
     <None Include="Assets\Assets\M2Mqtt\M2Mqtt_LICENSE.txt" />
     <None Include="Assets\Packages\Newtonsoft.Json.13.0.3\lib\netstandard2.0\Newtonsoft.Json.dll" />
     <None Include="Assets\AvataDID\Plugins\libeay32md.dll" />
+    <None Include="Assets\Packages\System.Security.Cryptography.OpenSsl.5.0.0\lib\netstandard2.0\System.Security.Cryptography.OpenSsl.dll" />
+    <None Include="Assets\Packages\System.Security.Cryptography.OpenSsl.5.0.0\version.txt" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="System.Diagnostics.PerformanceCounter, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Diagnostics.PerformanceCounter.8.0.0\lib\net462\System.Diagnostics.PerformanceCounter.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.10f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
@@ -398,6 +410,9 @@
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>Assets\Packages\Newtonsoft.Json.13.0.3\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.OpenSsl">
+      <HintPath>Assets\Packages\System.Security.Cryptography.OpenSsl.5.0.0\lib\netstandard2.0\System.Security.Cryptography.OpenSsl.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Android.Types">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.10f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>

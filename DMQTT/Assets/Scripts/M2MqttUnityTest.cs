@@ -21,7 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-
+using System.Diagnostics;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -50,6 +50,7 @@ using Newtonsoft.Json;
 using System.Security.Cryptography.X509Certificates;
 using System.Linq;
 using System.Diagnostics;
+using UnityEngine.Profiling;
 
 /// <summary>
 /// Examples for the M2MQTT library (https://github.com/eclipse/paho.mqtt.m2mqtt),
@@ -97,6 +98,27 @@ namespace M2MqttUnity.Examples
             indyTest = GetComponent<IndyTest>();
         }
 
+        private void FixedUpdate()
+        {
+            // 현재 시간 가져오기
+            string currentTime = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+
+            // 현재 프레임에서의 CPU 사용량을 가져오기
+            float cpuUsage = Profiler.GetTotalAllocatedMemoryLong() / 1024f / 1024f;
+
+            // 현재 시간과 CPU 사용량 출력
+            UnityEngine.Debug.Log("CPU Usage: " + cpuUsage + " MB" + " time: " + currentTime);
+
+            // 현재 프레임에서의 메모리 사용량 가져오기
+            long memoryUsage = Profiler.GetMonoUsedSizeLong() / (1024 * 1024); // MB로 변환
+
+            // 현재 시간과 메모리 사용량 출력
+            UnityEngine.Debug.Log($"{currentTime} - 메모리 사용량: {memoryUsage} MB" + " time: " + currentTime);
+
+
+
+        }
+
         protected override void OnConnected()
         {
             base.OnConnected();
@@ -117,7 +139,7 @@ namespace M2MqttUnity.Examples
                 string message = messageInputField.text;
 
                 //sing message
-                string signedMessage = await indyTest.SignDataAsync(message);
+                //string signedMessage = await indyTest.SignDataAsync(message);
 
                 // is signed message
                 /*if(indyTest.VerifySignature(signedMessage, message))
@@ -134,6 +156,18 @@ namespace M2MqttUnity.Examples
                     foreach (string i in topic)
                     {
                         client.Publish(i, Encoding.UTF8.GetBytes(message), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, false);
+
+                        // 현재 프레임에서의 CPU 사용량을 가져오기
+                        float cpuUsage = Profiler.GetTotalAllocatedMemoryLong() / 1024f / 1024f;
+
+                        UnityEngine.Debug.Log("CPU Usage: " + cpuUsage + " MB");
+
+                        // 현재 프로세스의 메모리 사용량 가져오기
+                        Process process = Process.GetCurrentProcess();
+                        long memoryUsage = process.WorkingSet64;
+
+                        // 현재 메모리 사용량 출력
+                        UnityEngine.Debug.Log($"메모리 사용량: {memoryUsage / (1024 * 1024)} MB");
 
                         AddUiMessage("Message published.");
                     }

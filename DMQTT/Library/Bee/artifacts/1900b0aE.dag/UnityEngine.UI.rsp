@@ -128,6 +128,7 @@
 -r:"Assets/Packages/Hyperledger.Indy.Sdk.1.11.1/lib/netstandard2.0/Hyperledger.Indy.Sdk.dll"
 -r:"Assets/Packages/Newtonsoft.Json.13.0.3/lib/netstandard2.0/Newtonsoft.Json.dll"
 -r:"Assets/Packages/Portable.BouncyCastle.1.9.0/lib/netstandard2.0/BouncyCastle.Crypto.dll"
+-r:"Assets/Packages/System.Security.Cryptography.OpenSsl.5.0.0/lib/netstandard2.0/System.Security.Cryptography.OpenSsl.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2022.3.10f1/Editor/Data/Managed/UnityEditor.Graphs.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2022.3.10f1/Editor/Data/Managed/UnityEngine/UnityEditor.CoreModule.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2022.3.10f1/Editor/Data/Managed/UnityEngine/UnityEditor.DeviceSimulatorModule.dll"
