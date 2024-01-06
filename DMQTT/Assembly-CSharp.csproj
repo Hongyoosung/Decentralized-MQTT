@@ -8,8 +8,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <ProjectGuid>{3B3D7C33-BEA9-8A7C-C22B-8AD07D04BC47}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -118,7 +117,6 @@
     <Compile Include="Assets\Assets\M2Mqtt\Net\Fx.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="Assets\Packages\Newtonsoft.Json.13.0.3\lib\netstandard2.0\Newtonsoft.Json.xml" />
     <None Include="Assets\AvataDID\Plugins\libsodium.dll" />
     <None Include="Assets\Packages\Hyperledger.Indy.Sdk.1.11.1\lib\netstandard2.0\Hyperledger.Indy.Sdk.dll" />
@@ -141,12 +139,8 @@
     <None Include="Assets\AvataDID\Plugins\libeay32md.dll" />
     <None Include="Assets\Packages\System.Security.Cryptography.OpenSsl.5.0.0\lib\netstandard2.0\System.Security.Cryptography.OpenSsl.dll" />
     <None Include="Assets\Packages\System.Security.Cryptography.OpenSsl.5.0.0\version.txt" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="System.Diagnostics.PerformanceCounter, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>packages\System.Diagnostics.PerformanceCounter.8.0.0\lib\net462\System.Diagnostics.PerformanceCounter.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.10f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
@@ -413,15 +407,6 @@
     </Reference>
     <Reference Include="System.Security.Cryptography.OpenSsl">
       <HintPath>Assets\Packages\System.Security.Cryptography.OpenSsl.5.0.0\lib\netstandard2.0\System.Security.Cryptography.OpenSsl.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Android.Types">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.10f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Android.Gradle">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.10f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Gradle.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Android.GradleProject">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.10f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.GradleProject.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.10f1\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>
