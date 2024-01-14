@@ -79,6 +79,8 @@ namespace M2MqttUnity.Examples
         public Button testPublishButton;
         public Button clearButton;
         public Button sendButton;
+        public Button requestTopicInfoButton;
+
 
         [Header("MQTT Settings")]
         [Tooltip("Topic to subscribe to")]
@@ -96,6 +98,7 @@ namespace M2MqttUnity.Examples
             base.Start();
 
             indyTest = GetComponent<IndyTest>();
+            requestTopicInfoButton.onClick.AddListener(RequestTopicInfo);
         }
 
         private void FixedUpdate()
@@ -114,9 +117,16 @@ namespace M2MqttUnity.Examples
 
             // 현재 시간과 메모리 사용량 출력
             UnityEngine.Debug.Log($"{currentTime} - 메모리 사용량: {memoryUsage} MB" + " time: " + currentTime);
+        }
 
+        private void RequestTopicInfo()
+        {
+            // 클라이언트가 요청 버튼을 눌렀을 때 브로커에게 토픽 정보를 요청하는 메시지를 발행
+            string requestMessage = "RequestingTopicInfo";
+            string requestTopic = "request_topic_info";
 
-
+            client.Publish(requestTopic, Encoding.UTF8.GetBytes(requestMessage), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, false);
+            AddUiMessage("Requested topic information. Waiting for response...");
         }
 
         protected override void OnConnected()
@@ -125,6 +135,9 @@ namespace M2MqttUnity.Examples
             SetUiMessage("Connected to broker on " + brokerAddress + "\n");
 
             indyTest.StartIndy();
+
+            // 연결 후 requestTopicInfoButton 활성화
+            requestTopicInfoButton.interactable = true;
 
             if (autoTest)
             {
@@ -180,10 +193,23 @@ namespace M2MqttUnity.Examples
         {
             string msg = System.Text.Encoding.UTF8.GetString(message);
 
+            if (topic == "request_topic_info_response")
+            {
+                // 브로커로부터 토픽 정보 응답을 받았을 때 처리
+                ProcessTopicInfoResponse(msg);
+            }
+            else
+            {
+                // 다른 토픽에 온 메시지 처리
+                StoreMessage(msg);
+                Task.Run(async () => await ProcessReceivedMessages(msg));
+            }
+        }
 
-            StoreMessage(msg);
-            Task.Run(async () => await ProcessReceivedMessages(msg));
-            // Process the received message
+        private void ProcessTopicInfoResponse(string response)
+        {
+            // 브로커로부터 받은 토픽 정보를 출력
+            AddUiMessage("Received topic information response: " + response);
         }
 
 
